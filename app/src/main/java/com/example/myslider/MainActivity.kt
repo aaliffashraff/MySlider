@@ -9,6 +9,7 @@ import com.example.myslider.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -19,5 +20,20 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        binding.valueText.text = binding.slider.value.toString()
+        binding.slider.onValueChange = { value ->
+            binding.valueText.text = value.toString()
+        }
+        binding.toggleSliderButton.setOnClickListener {
+            binding.slider.isEnabled = !binding.slider.isEnabled
+            binding.toggleSliderButton.setText(
+                if (binding.slider.isEnabled) R.string.disable_slider else R.string.enable_slider
+            )
+        }
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        binding.valueText.text = binding.slider.value.toString()
     }
 }

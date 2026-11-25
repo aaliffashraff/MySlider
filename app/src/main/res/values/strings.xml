@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MySlider</string>
+    <string name="disable_slider">Disable slider</string>
+    <string name="enable_slider">Enable slider</string>
 </resources>
